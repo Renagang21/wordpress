@@ -1,0 +1,276 @@
+/* 블록 기본 스타일 */
+.wp-block-rena-qr-code {
+    margin: 1em 0;
+    padding: 1.5em;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+/* 컨텐츠 입력 영역 */
+.wp-block-rena-qr-code .qr-content {
+    margin-bottom: 1em;
+}
+
+.wp-block-rena-qr-code .qr-content input {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* 생성 버튼 */
+.wp-block-rena-qr-code .qr-generate-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.8em 1.2em;
+    background: #007cba;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.wp-block-rena-qr-code .qr-generate-button:hover {
+    background: #006ba1;
+    transform: translateY(-1px);
+}
+
+.wp-block-rena-qr-code .qr-generate-button:active {
+    transform: translateY(1px);
+}
+
+.wp-block-rena-qr-code .qr-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* QR 코드 모달 */
+.rena-qr-modal {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.rena-qr-modal-content {
+    position: relative;
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 0;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease;
+}
+
+/* 모달 헤더 */
+.rena-qr-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 1.5em;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.rena-qr-modal-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.rena-qr-close {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #666;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.rena-qr-close:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* 모달 바디 */
+.rena-qr-modal-body {
+    padding: 1.5em;
+}
+
+/* QR 코드 프리뷰 */
+.rena-qr-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    margin-bottom: 1.5em;
+    padding: 1em;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.rena-qr-preview img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 컨트롤 영역 */
+.rena-qr-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+}
+
+/* 크기 조절 */
+.rena-qr-size-control {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.rena-qr-size-control input[type="range"] {
+    flex: 1;
+}
+
+.rena-qr-size-control .size-value {
+    min-width: 60px;
+    text-align: right;
+    color: #666;
+}
+
+/* 색상 컨트롤 */
+.rena-qr-color-controls {
+    display: flex;
+    gap: 1em;
+}
+
+.rena-qr-color-control {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.rena-qr-color-control label {
+    color: #666;
+}
+
+.rena-qr-color-control input[type="color"] {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 버튼 영역 */
+.rena-qr-buttons {
+    display: flex;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.rena-qr-buttons button {
+    flex: 1;
+    padding: 0.8em 1.2em;
+    background: #007cba;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.rena-qr-buttons button:hover {
+    background: #006ba1;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .rena-qr-modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+
+    .rena-qr-color-controls {
+        flex-direction: column;
+    }
+
+    .rena-qr-buttons {
+        flex-direction: column;
+    }
+}
+
+/* 다크 모드 대응 */
+@media (prefers-color-scheme: dark) {
+    .wp-block-rena-qr-code {
+        background: #2c2c2c;
+        border-color: #404040;
+    }
+
+    .rena-qr-modal-content {
+        background-color: #2c2c2c;
+        color: #ffffff;
+    }
+
+    .rena-qr-modal-header {
+        border-color: #404040;
+    }
+
+    .rena-qr-modal-header h3 {
+        color: #ffffff;
+    }
+
+    .rena-qr-close {
+        color: #999;
+    }
+
+    .rena-qr-close:hover {
+        background-color: #404040;
+        color: #ffffff;
+    }
+
+    .rena-qr-preview {
+        background-color: #363636;
+    }
+
+    .rena-qr-controls label {
+        color: #999;
+    }
+
+    .rena-qr-color-control input[type="color"] {
+        border-color: #404040;
+    }
+}

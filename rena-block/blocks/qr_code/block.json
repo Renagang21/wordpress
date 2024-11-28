@@ -1,0 +1,52 @@
+{
+    "apiVersion": 2,
+    "name": "rena-plugin/qr-code",
+    "title": "QR Code Generator",
+    "category": "widgets",
+    "icon": "qrcode",
+    "description": "Generate QR code from text or URL",
+    "keywords": ["qr", "qrcode", "generator"],
+    "version": "1.0.0",
+    "textdomain": "rena-plugin",
+    "attributes": {
+        "content": {
+            "type": "string",
+            "default": ""
+        },
+        "buttonText": {
+            "type": "string",
+            "default": "Generate QR Code"
+        },
+        "showIcon": {
+            "type": "boolean",
+            "default": true
+        },
+        "bgColor": {
+            "type": "string",
+            "default": "#FFFFFF"
+        },
+        "fgColor": {
+            "type": "string",
+            "default": "#000000"
+        },
+        "size": {
+            "type": "number",
+            "default": 256
+        },
+        "buttonStyle": {
+            "type": "object",
+            "default": {
+                "backgroundColor": "#007cba",
+                "textColor": "#ffffff",
+                "padding": "0.5em 1em"
+            }
+        }
+    },
+    "supports": {
+        "html": true,
+        "align": true
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./style.css",
+    "viewScript": "file:./frontend.js"
+}

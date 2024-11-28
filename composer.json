@@ -1,0 +1,21 @@
+{
+    "name": "renagang21/plugin",
+    "description": "WordPress plugin for Gutenberg blocks",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Renagang21\\Plugin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Renagang21",
+            "email": "sohae2100@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "endroid/qr-code": "^6.0"
+    }
+}

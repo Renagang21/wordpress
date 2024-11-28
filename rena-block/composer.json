@@ -1,0 +1,18 @@
+{
+    "name": "renagang21/rena-plugin",
+    "description": "구텐베르크에서 사용될 블록들을 모은 플러그인",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Renagang21\\RenaPlugin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Renagang21",
+            "email": "sohae2100@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}

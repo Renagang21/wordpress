@@ -1,0 +1,77 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "rena-plugin/copy-to-clipboard",
+    "title": "Copy to Clipboard",
+    "category": "widgets",
+    "icon": {
+        "src": "clipboard"
+    },
+    "description": "Add copyable content with QR code generator",
+    "keywords": ["copy", "clipboard", "qrcode"],
+    "version": "0.1.0",
+    "textdomain": "rena-plugin",
+    "attributes": {
+        "shortcode": {
+            "type": "string",
+            "source": "text",
+            "selector": "pre"
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "parsedContent": {
+            "type": "string",
+            "default": ""
+        },
+        "copyButtonText": {
+            "type": "string",
+            "default": "Copy"
+        },
+        "qrButtonText": {
+            "type": "string",
+            "default": "QR Code"
+        },
+        "showIcons": {
+            "type": "boolean",
+            "default": true
+        },
+        "clipboardIcon": {
+            "type": "string",
+            "default": "clipboard"
+        },
+        "buttonStyle": {
+            "type": "object",
+            "default": {
+                "backgroundColor": "#007cba",
+                "textColor": "#ffffff",
+                "padding": "0.5em 1em"
+            }
+        },
+        "containerStyle": {
+            "type": "object",
+            "default": {
+                "backgroundColor": "#f8f9fa",
+                "borderColor": "#dee2e6",
+                "borderWidth": "1px",
+                "borderStyle": "solid",
+                "borderRadius": "4px",
+                "padding": "1em"
+            }
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": true
+    },
+    "example": {
+        "attributes": {
+            "shortcode": "partner content<pre>https://example.com</pre>",
+            "title": "Partner Content"
+        }
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./style.css",
+    "viewScript": "file:./frontend.js"
+}
