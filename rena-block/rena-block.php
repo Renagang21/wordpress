@@ -19,6 +19,28 @@ define('RENA_BLOCK_VERSION', '1.0.0');
 // Load functions
 require_once RENA_BLOCK_PATH . 'includes/functions.php';
 
+// 프론트엔드 스크립트 등록
+// Define plugin constants
+define('RENA_BLOCK_PATH', plugin_dir_path(__FILE__));
+define('RENA_BLOCK_URL', plugin_dir_url(__FILE__));
+define('RENA_BLOCK_VERSION', '1.0.0');
+
+// Load functions
+require_once RENA_BLOCK_PATH . 'includes/functions.php';
+
+// 프론트엔드 스크립트 등록
+function enqueue_copy_clipboard_script() {
+    wp_enqueue_script(
+        'rena-copy-clipboard',
+        plugins_url('blocks/copy-to-clipboard/frontend.js', __FILE__),
+        array(),
+        '1.0.0',
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'enqueue_copy_clipboard_script');
+
+add_action('wp_enqueue_scripts', 'enqueue_copy_clipboard_script');
 class Rena_Block_Plugin {
     public function __construct() {
         add_action('init', array($this, 'init'));
