@@ -1,0 +1,106 @@
+@import "../../common/variables";
+@import "../../common/mixins";
+@import "../../common/base";
+
+/* Editor specific styles for copy-to-clipboard block */
+.wp-block-rena-block-copy-to-clipboard {
+    /* Block wrapper styles */
+    &.is-selected,
+    &.has-child-selected {
+        padding: 1px;
+        border: 1px dashed #999;
+    }
+
+    /* Title input styles */
+    .copy-clipboard-title {
+        margin-bottom: 1em;
+        
+        &[data-empty="true"]:before {
+            content: attr(placeholder);
+            color: #757575;
+            pointer-events: none;
+        }
+    }
+
+    /* Content area styles */
+    .copy-clipboard-content-wrapper {
+        position: relative;
+        margin-bottom: 1em;
+
+        .copy-clipboard-content {
+            min-height: 100px;
+            padding: 1em;
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: 4px;
+            
+            &[data-empty="true"]:before {
+                content: attr(placeholder);
+                color: #757575;
+                pointer-events: none;
+            }
+        }
+    }
+
+    /* Button container styles */
+    .copy-clipboard-buttons {
+        display: flex;
+        gap: 0.5em;
+        margin-top: 1em;
+        justify-content: flex-end;
+
+        button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5em;
+            padding: 0.5em 1em;
+            border: 1px solid var(--wp-admin-theme-color);
+            border-radius: 4px;
+            background-color: #fff;
+            color: var(--wp-admin-theme-color);
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background-color: var(--wp-admin-theme-color);
+                color: #fff;
+            }
+
+            /* Copy success state */
+            &.copied {
+                background-color: #4CAF50;
+                border-color: #45a049;
+                color: white;
+            }
+        }
+    }
+
+    /* Responsive editor styles */
+    @media screen and (max-width: 768px) {
+        .copy-clipboard-buttons {
+            flex-direction: column;
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    }
+
+    /* Block toolbar positioning */
+    > .block-editor-block-toolbar {
+        left: -1px;
+        top: -1px;
+    }
+}
+
+/* Inspector controls customization */
+.components-panel__body {
+    .components-base-control {
+        margin-bottom: 1em;
+    }
+
+    .components-color-picker {
+        margin-bottom: 1.5em;
+    }
+}

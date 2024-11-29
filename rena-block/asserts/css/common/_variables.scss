@@ -1,0 +1,46 @@
+// Colors
+$primary-color: var(--wp-admin-theme-color);
+$secondary-color: #f0f0f0;
+$border-color: #ddd;
+$text-color: #333;
+$placeholder-color: #757575;
+
+// Typography
+$base-font-size: 16px;
+$base-line-height: 1.5;
+$heading-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+$content-font-family: monospace;
+
+// Spacing
+$block-spacing: 1.5em;
+$content-padding: 1em;
+$button-gap: 0.5em;
+
+// Border
+$border-radius: 4px;
+$border-width: 1px;
+
+// Transitions
+$transition-speed: 0.2s;
+$transition-easing: ease;
+
+// Breakpoints
+$mobile-breakpoint: 768px;
+$tablet-breakpoint: 1024px;
+
+// Z-index layers
+$modal-backdrop: 999;
+$modal: 1000;
+
+// Block specific
+$block-selected-border-color: #999;
+$block-selected-border-style: dashed;
+$block-selected-border-width: 1px;
+
+// Success state
+$success-color: #4CAF50;
+$success-border-color: #45a049;
+
+// Error state
+$error-color: #dc3545;
+$error-border-color: #bd2130;

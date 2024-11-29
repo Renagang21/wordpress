@@ -1,23 +1,26 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
-    "name": "rena-plugin/copy-to-clipboard",
-    "title": "Copy to Clipboard",
-    "category": "widgets",
-    "icon": {
-        "src": "clipboard"
-    },
-    "description": "Add copyable content with QR code generator",
-    "keywords": ["copy", "clipboard", "qrcode"],
+    "name": "rena-block/copy-to-clipboard",
     "version": "0.1.0",
-    "textdomain": "rena-plugin",
+    "title": "Copy to Clipboard Block",
+    "category": "widgets",
+    "icon": "clipboard",
+    "description": "A block that allows users to copy content to clipboard and generate QR codes",
+    "supports": {
+        "html": false,
+        "align": ["wide", "full"],
+        "spacing": {
+            "margin": true,
+            "padding": true
+        }
+    },
     "attributes": {
-        "shortcode": {
-            "type": "string",
-            "source": "text",
-            "selector": "pre"
-        },
         "title": {
+            "type": "string",
+            "default": ""
+        },
+        "content": {
             "type": "string",
             "default": ""
         },
@@ -25,53 +28,56 @@
             "type": "string",
             "default": ""
         },
-        "copyButtonText": {
+        "backgroundColor": {
             "type": "string",
-            "default": "Copy"
+            "default": "#ffffff"
         },
-        "qrButtonText": {
+        "textColor": {
             "type": "string",
-            "default": "QR Code"
+            "default": "#000000"
         },
-        "showIcons": {
+        "borderStyle": {
+            "type": "string",
+            "default": "solid"
+        },
+        "borderWidth": {
+            "type": "number",
+            "default": 1
+        },
+        "borderColor": {
+            "type": "string",
+            "default": "#dddddd"
+        },
+        "borderRadius": {
+            "type": "number",
+            "default": 4
+        },
+        "buttonSettings": {
+            "type": "object",
+            "default": {
+                "copyButton": {
+                    "text": "복사",
+                    "showIcon": true,
+                    "hoverEffect": true
+                },
+                "qrButton": {
+                    "text": "QR CODE 만들기",
+                    "showIcon": true,
+                    "hoverEffect": true
+                }
+            }
+        },
+        "isColumnOnly": {
             "type": "boolean",
             "default": true
         },
-        "clipboardIcon": {
-            "type": "string",
-            "default": "clipboard"
-        },
-        "buttonStyle": {
-            "type": "object",
-            "default": {
-                "backgroundColor": "#007cba",
-                "textColor": "#ffffff",
-                "padding": "0.5em 1em"
-            }
-        },
-        "containerStyle": {
-            "type": "object",
-            "default": {
-                "backgroundColor": "#f8f9fa",
-                "borderColor": "#dee2e6",
-                "borderWidth": "1px",
-                "borderStyle": "solid",
-                "borderRadius": "4px",
-                "padding": "1em"
-            }
+        "allowShortcode": {
+            "type": "boolean",
+            "default": true
         }
     },
-    "supports": {
-        "html": false,
-        "align": true
-    },
-    "example": {
-        "attributes": {
-            "shortcode": "partner content<pre>https://example.com</pre>",
-            "title": "Partner Content"
-        }
-    },
+    "textdomain": "rena-block",
     "editorScript": "file:./index.js",
-    "style": "file:./style.css",
-    "viewScript": "file:./frontend.js"
+    "editorStyle": "file:./index.css",
+    "style": "file:./style.css"
 }

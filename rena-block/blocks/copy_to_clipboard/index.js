@@ -1,180 +1,187 @@
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
-const { useBlockProps, InspectorControls } = wp.blockEditor;
-const {
-    PanelBody,
+import { __ } from '@wordpress/i18n';
+import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
+import { 
+    PanelBody, 
+    ToggleControl, 
     TextControl,
-    ToggleControl,
-    ColorPicker
-} = wp.components;
+    ColorPicker,
+    RangeControl,
+    SelectControl,
+    Button,
+} from '@wordpress/components';
+import { useState } from '@wordpress/element';
+import { dispatch } from '@wordpress/data';
 
-// Dashicons의 'clipboard' 아이콘 사용
-const ClipboardIcon = 'clipboard'; // Dashicons 기본 제공 아이콘
+// 스타일 import
+import './editor.scss';
 
-registerBlockType('rena-plugin/copy-to-clipboard', {
-    icon: ClipboardIcon, // Dashicons 아이콘 설정
+// 블록 에디터
+export default function Edit({ attributes, setAttributes, isSelected }) {
+    const {
+        title,
+        content,
+        backgroundColor,
+        textColor,
+        borderStyle,
+        borderWidth,
+        borderColor,
+        borderRadius,
+        buttonSettings,
+        isColumnOnly,
+        allowShortcode,
+    } = attributes;
 
-    edit: ({ attributes, setAttributes }) => {
-        const {
-            shortcode,
-            copyButtonText,
-            qrButtonText,
-            showIcons,
-            buttonStyle,
-            containerStyle
-        } = attributes;
+    // Copy 기능 상태 관리
+    const [isCopied, setIsCopied] = useState(false);
 
-        const blockProps = useBlockProps();
+    // 복사 기능
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(content);
+            setIsCopied(true);
+            setTimeout(() => setIsCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+    };
 
-        return (
-            <div {...blockProps}>
-                <InspectorControls>
-                    <PanelBody title={__('Button Settings', 'rena-plugin')}>
-                        <TextControl
-                            label={__('Copy Button Text', 'rena-plugin')}
-                            value={copyButtonText || ''}
-                            onChange={(value) =>
-                                setAttributes({ copyButtonText: value })
-                            }
-                        />
-                        <TextControl
-                            label={__('QR Code Button Text', 'rena-plugin')}
-                            value={qrButtonText || ''}
-                            onChange={(value) =>
-                                setAttributes({ qrButtonText: value })
-                            }
-                        />
-                        <ToggleControl
-                            label={__('Show Icons', 'rena-plugin')}
-                            checked={showIcons}
-                            onChange={(value) =>
-                                setAttributes({ showIcons: value })
-                            }
-                        />
-                    </PanelBody>
+    // QR 코드 생성 모달 상태
+    const [isQRModalOpen, setIsQRModalOpen] = useState(false);
 
-                    <PanelBody title={__('Style Settings', 'rena-plugin')}>
-                        <label>{__('Button Background', 'rena-plugin')}</label>
-                        <ColorPicker
-                            color={buttonStyle?.backgroundColor || '#007cba'}
-                            onChangeComplete={(value) =>
-                                setAttributes({
-                                    buttonStyle: {
-                                        ...buttonStyle,
-                                        backgroundColor: value.hex
-                                    }
-                                })
-                            }
-                        />
-                        <label>{__('Button Text Color', 'rena-plugin')}</label>
-                        <ColorPicker
-                            color={buttonStyle?.textColor || '#ffffff'}
-                            onChangeComplete={(value) =>
-                                setAttributes({
-                                    buttonStyle: {
-                                        ...buttonStyle,
-                                        textColor: value.hex
-                                    }
-                                })
-                            }
-                        />
-                    </PanelBody>
-                </InspectorControls>
+    // 블록 스타일
+    const blockStyle = {
+        backgroundColor,
+        color: textColor,
+        borderStyle,
+        borderWidth: `${borderWidth}px`,
+        borderColor,
+        borderRadius: `${borderRadius}px`,
+        padding: '20px',
+    };
 
-                <div
-                    className="wp-block-rena-copy-to-clipboard"
-                    style={containerStyle}
-                >
-                    <TextControl
-                        label={__('Shortcode', 'rena-plugin')}
-                        value={shortcode || ''}
-                        onChange={(value) =>
-                            setAttributes({ shortcode: value })
-                        }
-                        help={__(
-                            'Enter shortcode in format: [Title]<pre>Content</pre>',
-                            'rena-plugin'
-                        )}
+    return (
+        <>
+            <InspectorControls>
+                <PanelBody title={__('Block Settings', 'rena-block')}>
+                    <ColorPicker
+                        label={__('Background Color', 'rena-block')}
+                        color={backgroundColor}
+                        onChange={(color) => setAttributes({ backgroundColor: color })}
                     />
-                    <div className="button-container">
-                        <button
-                            className="copy-button"
-                            style={buttonStyle}
-                            disabled
-                        >
-                            {showIcons && (
-                                <span className="dashicon dashicons-clipboard" />
-                            )}
-                            <span>{copyButtonText || 'Copy'}</span>
-                        </button>
+                    <ColorPicker
+                        label={__('Text Color', 'rena-block')}
+                        color={textColor}
+                        onChange={(color) => setAttributes({ textColor: color })}
+                    />
+                    <SelectControl
+                        label={__('Border Style', 'rena-block')}
+                        value={borderStyle}
+                        options={[
+                            { label: 'Solid', value: 'solid' },
+                            { label: 'Dashed', value: 'dashed' },
+                            { label: 'Dotted', value: 'dotted' },
+                        ]}
+                        onChange={(value) => setAttributes({ borderStyle: value })}
+                    />
+                    <RangeControl
+                        label={__('Border Width', 'rena-block')}
+                        value={borderWidth}
+                        onChange={(value) => setAttributes({ borderWidth: value })}
+                        min={0}
+                        max={10}
+                    />
+                    <RangeControl
+                        label={__('Border Radius', 'rena-block')}
+                        value={borderRadius}
+                        onChange={(value) => setAttributes({ borderRadius: value })}
+                        min={0}
+                        max={20}
+                    />
+                    <TextControl
+                        label={__('Copy Button Text', 'rena-block')}
+                        value={buttonSettings.copyButton.text}
+                        onChange={(value) => setAttributes({
+                            buttonSettings: {
+                                ...buttonSettings,
+                                copyButton: {
+                                    ...buttonSettings.copyButton,
+                                    text: value
+                                }
+                            }
+                        })}
+                    />
+                    <TextControl
+                        label={__('QR Button Text', 'rena-block')}
+                        value={buttonSettings.qrButton.text}
+                        onChange={(value) => setAttributes({
+                            buttonSettings: {
+                                ...buttonSettings,
+                                qrButton: {
+                                    ...buttonSettings.qrButton,
+                                    text: value
+                                }
+                            }
+                        })}
+                    />
+                    <ToggleControl
+                        label={__('Allow Shortcode', 'rena-block')}
+                        checked={allowShortcode}
+                        onChange={(value) => setAttributes({ allowShortcode: value })}
+                    />
+                </PanelBody>
+            </InspectorControls>
 
-                        <button
-                            className="qr-button"
-                            style={buttonStyle}
-                            disabled
+            <div {...useBlockProps({ style: blockStyle })}>
+                <RichText
+                    tagName="h4"
+                    value={title}
+                    onChange={(value) => setAttributes({ title: value })}
+                    placeholder={__('Enter title...', 'rena-block')}
+                    className="copy-clipboard-title"
+                />
+                
+                <div className="copy-clipboard-content-wrapper">
+                    <RichText
+                        tagName="pre"
+                        value={content}
+                        onChange={(value) => setAttributes({ content: value })}
+                        placeholder={__('Enter content to copy...', 'rena-block')}
+                        className="copy-clipboard-content"
+                    />
+                    
+                    <div className="copy-clipboard-buttons">
+                        <Button
+                            variant="secondary"
+                            onClick={handleCopy}
+                            className={`copy-button ${isCopied ? 'copied' : ''}`}
+                            icon={isCopied ? 'yes' : 'clipboard'}
                         >
-                            {showIcons && (
-                                <span className="dashicon dashicons-admin-site-alt3" />
-                            )}
-                            <span>{qrButtonText || 'QR Code'}</span>
-                        </button>
+                            {isCopied ? __('Copied!', 'rena-block') : buttonSettings.copyButton.text}
+                        </Button>
+                        
+                        <Button
+                            variant="secondary"
+                            onClick={() => setIsQRModalOpen(true)}
+                            className="qr-button"
+                            icon="qrcode"
+                        >
+                            {buttonSettings.qrButton.text}
+                        </Button>
                     </div>
                 </div>
             </div>
-        );
-    },
 
-    save: ({ attributes }) => {
-        const {
-            title,
-            parsedContent,
-            copyButtonText,
-            qrButtonText,
-            showIcons,
-            buttonStyle,
-            containerStyle
-        } = attributes;
-
-        const blockProps = useBlockProps.save();
-
-        return (
-            <div {...blockProps}>
-                <div
-                    className="wp-block-rena-copy-to-clipboard"
-                    style={containerStyle}
-                >
-                    <h4>{title}</h4>
-                    <div
-                        className="copyable-content"
-                        data-content={parsedContent}
+            {isQRModalOpen && (
+                <div className="qr-modal">
+                    {/* QR 코드 모달 내용은 별도 컴포넌트로 구현 예정 */}
+                    <Button
+                        variant="secondary"
+                        onClick={() => setIsQRModalOpen(false)}
                     >
-                        {parsedContent}
-                    </div>
-                    <div className="button-container">
-                        <button
-                            className="copy-button"
-                            data-clipboard-text={parsedContent}
-                            style={buttonStyle}
-                        >
-                            {showIcons && (
-                                <span className="dashicon dashicons-clipboard" />
-                            )}
-                            <span>{copyButtonText || 'Copy'}</span>
-                        </button>
-
-                        <button
-                            className="qr-button"
-                            data-content={parsedContent}
-                            style={buttonStyle}
-                        >
-                            {showIcons && (
-                                <span className="dashicon dashicons-admin-site-alt3" />
-                            )}
-                            <span>{qrButtonText || 'QR Code'}</span>
-                        </button>
-                    </div>
+                        {__('Close', 'rena-block')}
+                    </Button>
                 </div>
-            </div>
-        );
-    }
-});
+            )}
+        </>
+    );
+}
