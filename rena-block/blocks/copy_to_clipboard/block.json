@@ -1,83 +1,43 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
-    "name": "rena-block/copy-to-clipboard",
+    "name": "rena/copy-to-clipboard",
     "version": "0.1.0",
-    "title": "Copy to Clipboard Block",
+    "title": "Copy to Clipboard",
     "category": "widgets",
     "icon": "clipboard",
-    "description": "A block that allows users to copy content to clipboard and generate QR codes",
+    "description": "A block that allows users to copy content to clipboard with shortcode support",
+    "example": {},
     "supports": {
         "html": false,
-        "align": ["wide", "full"],
-        "spacing": {
-            "margin": true,
-            "padding": true
-        }
+        "align": true
     },
+    "parent": ["core/column"],
     "attributes": {
         "title": {
             "type": "string",
+            "source": "html",
+            "selector": ".copy-title",
             "default": ""
         },
         "content": {
             "type": "string",
-            "default": ""
-        },
-        "parsedContent": {
-            "type": "string",
+            "source": "html",
+            "selector": "pre",
             "default": ""
         },
         "backgroundColor": {
             "type": "string",
-            "default": "#ffffff"
+            "default": "#f8f8f8"
         },
         "textColor": {
             "type": "string",
-            "default": "#000000"
-        },
-        "borderStyle": {
-            "type": "string",
-            "default": "solid"
-        },
-        "borderWidth": {
-            "type": "number",
-            "default": 1
-        },
-        "borderColor": {
-            "type": "string",
-            "default": "#dddddd"
-        },
-        "borderRadius": {
-            "type": "number",
-            "default": 4
-        },
-        "buttonSettings": {
-            "type": "object",
-            "default": {
-                "copyButton": {
-                    "text": "복사",
-                    "showIcon": true,
-                    "hoverEffect": true
-                },
-                "qrButton": {
-                    "text": "QR CODE 만들기",
-                    "showIcon": true,
-                    "hoverEffect": true
-                }
-            }
-        },
-        "isColumnOnly": {
-            "type": "boolean",
-            "default": true
-        },
-        "allowShortcode": {
-            "type": "boolean",
-            "default": true
+            "default": "#333333"
         }
     },
-    "textdomain": "rena-block",
+    "textdomain": "rena",
     "editorScript": "file:./index.js",
-    "editorStyle": "file:./index.css",
-    "style": "file:./style.css"
+    "editorStyle": "file:./editor.scss",
+    "style": "file:./style.scss",
+    "viewScript": "file:./frontend.js"
 }
