@@ -1,0 +1,16 @@
+.wp-block-rena-copy-to-clipboard {
+    .copy-title {
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+
+    pre.copy-content {
+        &:focus {
+            outline: none;
+            box-shadow: none;
+            border-color: #007cba;
+        }
+    }
+}
