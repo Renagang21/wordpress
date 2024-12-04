@@ -1,0 +1,78 @@
+.wp-block-rena-copy-to-clipboard {
+    /* 기존 스타일 유지 */
+}
+
+/* QR Modal Styles */
+.qr-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+}
+
+.qr-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+.qr-modal .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f0f0f0;
+}
+
+.qr-modal img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.qr-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.qr-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background: #007cba;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.qr-actions button:hover {
+    background: #006ba1;
+}
+
+@media (max-width: 768px) {
+    .qr-modal-content {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    .qr-actions {
+        flex-direction: column;
+    }
+}

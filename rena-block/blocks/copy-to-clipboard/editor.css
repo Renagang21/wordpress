@@ -1,0 +1,64 @@
+.wp-block-rena-copy-to-clipboard {
+    margin: 1rem 0;
+}
+
+.wp-block-rena-copy-to-clipboard .copy-title {
+    margin: 0 0 1rem;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.wp-block-rena-copy-to-clipboard .copy-title:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.wp-block-rena-copy-to-clipboard pre.copy-content {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 0 1rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: monospace;
+}
+
+.wp-block-rena-copy-to-clipboard pre.copy-content:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #007cba;
+}
+
+.wp-block-rena-copy-to-clipboard .button-container {
+    display: flex;
+    gap: 1rem;
+}
+
+/* QR Modal editor styles */
+.qr-code-modal .components-modal__content {
+    padding: 2rem;
+}
+
+.qr-code-container {
+    text-align: center;
+}
+
+.qr-code-container img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.qr-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.print-settings {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
