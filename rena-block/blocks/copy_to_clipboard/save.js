@@ -22,13 +22,24 @@ export default function Save({ attributes }) {
                 className="copy-content"
                 value={attributes.content}
             />
-            <button 
-                className="copy-button" 
-                data-clipboard-text={attributes.content}
-                type="button"
-            >
-                {__('Copy', 'rena-blocks')}
-            </button>
+            <div className="button-container">
+                <button 
+                    className="copy-button" 
+                    data-clipboard-text={attributes.content}
+                    type="button"
+                >
+                    {__('Copy', 'rena-blocks')}
+                </button>
+                <button 
+                    className="qr-button" 
+                    type="button"
+                    data-content={attributes.content}
+                    data-size={attributes.qrCodeSize}
+                    data-print-layout={JSON.stringify(attributes.printLayout)}
+                >
+                    {__('QR Code', 'rena-blocks')}
+                </button>
+            </div>
         </div>
     );
 }

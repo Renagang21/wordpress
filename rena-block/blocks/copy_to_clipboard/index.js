@@ -6,9 +6,9 @@ import './style.scss';
 import './editor.scss';
 
 registerBlockType('rena/copy-to-clipboard', {
-    apiVersion: 2,
+    apiVersion: 3,
     title: __('Copy to Clipboard', 'rena-blocks'),
-    description: __('A block that allows users to copy content to clipboard with shortcode support.', 'rena-blocks'),
+    description: __('A block that allows users to copy content to clipboard with QR code support', 'rena-blocks'),
     category: 'widgets',
     icon: 'clipboard',
     supports: {
@@ -36,6 +36,18 @@ registerBlockType('rena/copy-to-clipboard', {
         textColor: {
             type: 'string',
             default: '#333333',
+        },
+        qrCodeSize: {
+            type: 'number',
+            default: 200,
+        },
+        printLayout: {
+            type: 'object',
+            default: {
+                codesPerRow: 2,
+                codeSize: 50,
+                showText: true,
+            },
         },
     },
     edit: Edit,

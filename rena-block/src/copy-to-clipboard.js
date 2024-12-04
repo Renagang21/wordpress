@@ -1,0 +1,1 @@
+import './blocks/copy-to-clipboard/index';
