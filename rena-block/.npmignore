@@ -1,0 +1,18 @@
+# node_modules 폴더는 배포 시 필요하지 않음
+node_modules/
+
+# 개발 설정 파일들
+webpack.config.js
+
+# 빌드 전의 소스 파일들
+src/
+
+# 문서화 파일들 (일반적으로 배포에 포함되지 않음)
+docs/
+
+# 빌드 후 생성된 맵 파일들 (디버깅 용도로만 사용됨)
+build/*.js.map
+
+# 배포에 불필요한 파일들
+package-lock.json
+rena-block.zip

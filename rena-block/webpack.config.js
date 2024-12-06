@@ -4,8 +4,8 @@ const path = require('path');
 module.exports = {
     ...defaultConfig,
     entry: {
-        'copy-to-clipboard': './blocks/copy-to-clipboard/index.js',
-        'qr-code': './blocks/qr-code/index.js'
+        'copy-to-clipboard': './src/copy-to-clipboard/index.js',
+        'qr-code': './src/qr-code/index.js'
     },
     output: {
         path: path.join(__dirname, 'build'),

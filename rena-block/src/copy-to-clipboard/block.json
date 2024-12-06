@@ -4,8 +4,10 @@
     "name": "rena/copy-to-clipboard",
     "version": "0.1.0",
     "title": "Copy to Clipboard",
-    "category": "widgets",
-    "icon": "clipboard",
+    "category": "rena-blocks",
+    "icon": {
+        "src": "clipboard"
+    },
     "description": "Block for copying content with QR code generation",
     "example": {},
     "supports": {

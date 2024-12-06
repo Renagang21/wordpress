@@ -14,13 +14,10 @@ if (!defined('ABSPATH')) {
  * @return string Processed content with shortcodes executed
  */
 function rena_parse_content_shortcodes($content) {
-    // Remove potential auto-p formatting
-    $content = strip_shortcodes($content);
+    // Remove potential auto-p formatting and process shortcodes
     $content = preg_replace('/<p>\s*(\[.*?\])\s*<\/p>/s', '$1', $content);
-    
-    // Process shortcodes
     $content = do_shortcode($content);
-    
+
     return $content;
 }
 
@@ -35,9 +32,6 @@ function rena_process_block_content($attributes) {
         return $attributes;
     }
 
-    // Store original content
-    $attributes['originalContent'] = $attributes['content'];
-    
     // Parse shortcodes if enabled
     if (!empty($attributes['allowShortcode']) && $attributes['allowShortcode']) {
         $attributes['parsedContent'] = rena_parse_content_shortcodes($attributes['content']);
@@ -71,10 +65,10 @@ function rena_sanitize_block_content($content) {
             'class' => array()
         )
     );
-    
+
     // Sanitize the content
     $content = wp_kses($content, $allowed_html);
-    
+
     return $content;
 }
 
@@ -100,6 +94,6 @@ function rena_get_display_content($attributes) {
     $content = !empty($attributes['parsedContent']) ? 
                $attributes['parsedContent'] : 
                $attributes['content'];
-               
+
     return wp_kses_post($content);
 }
