@@ -23,7 +23,7 @@ require_once RENA_BLOCK_PATH . 'includes/functions.php';
 function enqueue_copy_clipboard_script() {
     wp_enqueue_script(
         'rena-copy-clipboard',
-        plugins_url('blocks/copy-to-clipboard/frontend.js', __FILE__),
+        plugins_url('build/copy-to-clipboard/frontend.js', __FILE__),
         array(),
         '1.0.0',
         true
@@ -62,6 +62,7 @@ class Rena_Block_Plugin {
     }
 
     public function register_block_category($categories, $post) {
+        error_log('register_block_category function called');
         return array_merge(
             $categories,
             array(

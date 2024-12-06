@@ -2,55 +2,63 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
     "name": "rena/copy-to-clipboard",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "title": "Copy to Clipboard",
     "category": "rena-blocks",
     "icon": {
-        "src": "clipboard"
+      "src": "file:../../assets/js/copy-clipboard.svg"
     },
-    "description": "Block for copying content with QR code generation",
-    "example": {},
+    "description": "A block that allows copying content with optional QR code generation.",
     "supports": {
-        "html": false,
-        "align": true
+      "html": false,
+      "align": ["wide", "full"],
+      "color": {
+        "background": true,
+        "text": true
+      },
+      "spacing": {
+        "padding": true,
+        "margin": true
+      }
     },
-    "textdomain": "rena",
+    "textdomain": "rena-block",
     "attributes": {
-        "title": {
-            "type": "string",
-            "source": "html",
-            "selector": ".copy-title",
-            "default": ""
-        },
-        "content": {
-            "type": "string",
-            "source": "html",
-            "selector": "pre",
-            "default": ""
-        },
-        "backgroundColor": {
-            "type": "string",
-            "default": "#f8f8f8"
-        },
-        "textColor": {
-            "type": "string",
-            "default": "#333333"
-        },
-        "qrCodeSize": {
-            "type": "number",
-            "default": 200
-        },
-        "printLayout": {
-            "type": "object",
-            "default": {
-                "codesPerRow": 2,
-                "codeSize": 50,
-                "showText": true
-            }
+      "title": {
+        "type": "string",
+        "source": "html",
+        "selector": ".copy-title",
+        "default": "Title Here"
+      },
+      "content": {
+        "type": "string",
+        "source": "html",
+        "selector": ".copy-content",
+        "default": "Content to copy here..."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "default": "#f8f8f8"
+      },
+      "textColor": {
+        "type": "string",
+        "default": "#333333"
+      },
+      "qrCodeSize": {
+        "type": "number",
+        "default": 200
+      },
+      "printLayout": {
+        "type": "object",
+        "default": {
+          "codesPerRow": 2,
+          "codeSize": 50,
+          "showText": true
         }
+      }
     },
     "editorScript": "file:./index.js",
-    "editorStyle": "file:./editor.scss",
+    "editorStyle": "file:./editor.css",
     "style": "file:./style.css",
-    "viewScript": "file:./frontend.js"
-}
+    "script": "file:./frontend.js"
+  }
+  
