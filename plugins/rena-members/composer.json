@@ -1,0 +1,19 @@
+{
+    "name": "renagang/rena-members",
+    "description": "Advanced membership management for WordPress",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "squizlabs/php_codesniffer": "^3.6",
+        "wp-coding-standards/wpcs": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "RenaMembers\\": "includes/"
+        }
+    }
+}
